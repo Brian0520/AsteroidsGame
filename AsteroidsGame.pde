@@ -29,6 +29,8 @@ public void draw()
     for(int i = 0; i < rocks.size(); i ++){
     rocks.get(i).move();
     rocks.get(i).show();
+      if(rocks.size() < 10)
+        rocks.add(i,new Asteroid());
    }
   for(int i = 0; i < nightSky.length; i ++)
   {
@@ -63,7 +65,17 @@ public void draw()
      float d = dist((float)bob.getX(), (float)bob.getY(), (float)rocks.get(i).getX(), (float)rocks.get(i).getY());
      if (d < 10)
        rocks.remove(i);
-}
+}  
+  for(int i = 0; i < rocks.size(); i ++){
+    for(int j = 0; j < shots.size(); j++){
+      float k = dist((float)rocks.get(i).getX(), (float)rocks.get(i).getY(), (float)shots.get(j).getX(), (float)shots.get(j).getY());
+      if (k < 10){
+        rocks.remove(i);
+        shots.remove(j);
+        break;
+      }
+    }
+  }
 }
 public void keyPressed()
 {
@@ -105,58 +117,4 @@ void keyReleased()
   {
     dIsPressed = false;
   }
-}
-
-
-
-Spaceship bob = new Spaceship();
-Star[] nightSky = new Star[200];
-public void setup()
-{
-size(400,400);
-for(int i = 0; i < nightSky.length; i++){
-nightSky[i] = new Star();
-  }
-}
-public void draw()
-{
-background(0);
-bob.show();
-bob.move();
-for(int i = 0; i < nightSky.length; i++){
-nightSky[i].show();
-fill(255);
-rect(0,0,20,500);
-rect(100,100,20,200);
-rect(250,100,20,300);
-rect(380,0,20,500);
-  }
- 
-
-}
-public void keyPressed()
-{
- 
-  if(key == 'w')
-  {
-      bob.accelerate(1);
-     
-  }
-   if(key == 'a')
-  {
-     bob.turn(-10.0);
-  }
-   if(key == 'd')
-  {
-     bob.turn(10.0);
-  }
-  if(key == ' ')
-  {
-     bob.setXspeed(0);
-     bob.setYspeed(0);
-     bob.turn((int)(Math.random()*300+100));
-     bob.setXCenter((int)(Math.random()*300+100));
-      bob.setYCenter((int)(Math.random()*300+100));
-     
- }
 }
