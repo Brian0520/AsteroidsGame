@@ -25,8 +25,3 @@ public double getPointDirection(){return myPointDirection;}
 }
 
 
-  public void setYCenter(double y2) {
-  myCenterY = y2;
-  }
-
-}
