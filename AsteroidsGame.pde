@@ -30,8 +30,6 @@ public void draw()
     rocks.get(i).move();
     rocks.get(i).show();
       if(rocks.size() < 10)
-        (float)rocks.get(i).getX((int)(Math.random()*401+1));
-        (float)rocks.get(i).getY((int)(Math.random()*401+1));
         rocks.add(i,new Asteroid());
    }
   for(int i = 0; i < nightSky.length; i ++)
